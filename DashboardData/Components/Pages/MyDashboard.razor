@@ -1,0 +1,82 @@
+@page "/dashboard"
+@rendermode InteractiveServer
+
+<PageTitle> Mon Dashboard Title </PageTitle>
+
+<h1> Tableau de bord </h1>
+
+<div class="alert alert-info">
+Bienvenue sur l'interface de pilotage.
+Nous sommes le : <strong>@DateTime.Now.ToString("dd MMMM yyyy")</strong>
+</div>
+
+<p>
+status du systeme : 
+@if (IsSystemOK)
+{
+    <span class="badge bg-success">Operationnel</span>
+}
+else
+{
+    <span class="badge bg-danger">Erreur Critique</span>
+}
+</p>
+
+<button class="btn btn-primary" @onclick="RefreshSystem">
+    <span class="bi bi-arrow-repeat">Actualiser le status</span>
+</button>
+
+<div class="mt-3 card card-body">
+    Logs : @LastLog
+</div>
+
+@using DashboardData.Models
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Valeur</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var sensor in Sensors)
+        {
+            <tr>
+                <td>@sensor.Name</td>
+                <td>@sensor.Value</td>
+
+            </tr>
+        }
+    </tbody>
+
+
+</table>
+
+
+@code {
+    private bool IsSystemOK= true;
+    private int RequestCount = 0;
+    private string LastLog = "Rien a signaler";
+    private List<SensorData> Sensors = new List<SensorData>
+    {
+        new SensorData { Name= "Temp_Salon", Value=22.5},
+        new SensorData { Name= "Hum_Cuisine", Value=45.0},
+        new SensorData { Name= "CO2_Bureau", Value=800},
+
+    };
+
+    private void RefreshSystem()
+    {
+        RequestCount++;
+        var rnd= new Random();
+        IsSystemOK = rnd.Next(0,10)>2;
+
+        if (IsSystemOK)
+            LastLog = $"Check {RequestCount} : Tous va bien.";
+        else
+            LastLog = $"Check {RequestCount} : ANOMALIE DETECTEE !";
+                   
+    }
+}
+
