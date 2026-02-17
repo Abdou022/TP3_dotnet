@@ -3,7 +3,8 @@
 @using DashboardData.Services
 @inject ISensorService SensorService
 @inject NavigationManager NavManager
-@inject UserCounterService CounterService
+@inject UserCounterService S1
+@inject UserCounterService S2
 
 
 <PageTitle> Mon Dashboard Title </PageTitle>
@@ -71,18 +72,21 @@ else
 </button>
 
 
-<div class="card mt-4 p-3">
-    <h5>Compteur utilisateur</h5>
+<div class="card p-3 mb-3">
+    <h5>Expérience Transient, Compteur Utilisateur</h5>
 
-    <p>
-        Nombre d'actions : 
-        <strong>@CounterService.Count</strong>
-    </p>
+    <p>S1 Count : <strong>@S1.Count</strong></p>
+    <p>S2 Count : <strong>@S2.Count</strong></p>
 
-    <button class="btn btn-success" @onclick="IncrementCounter">
-        Incrementer
+    <button class="btn btn-primary mb-4" @onclick="IncrementS1">
+        Increment S1
+    </button>
+
+    <button class="btn btn-success" @onclick="IncrementS2">
+        Increment S2
     </button>
 </div>
+
 
 
 }
@@ -118,10 +122,16 @@ else
         NavManager.NavigateTo("/add-sensor");
     }
 
-    private void IncrementCounter()
+    private void IncrementS1()
     {
-        CounterService.Increment();
+        S1.Increment();
     }
+
+    private void IncrementS2()
+    {
+        S2.Increment();
+    }
+
 
 }
 
