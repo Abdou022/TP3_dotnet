@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Abdou\\Desktop\\2eme cycle\\S2\\C#\\Compte rendu\\TP3\\DashboardData\\DashboardData.csproj": {}
+    "C:\\Users\\Abdou\\Desktop\\2eme cycle\\S2\\C#\\Compte rendu\\TP3\\TP3_dotnet\\DashboardData\\DashboardData.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Abdou\\Desktop\\2eme cycle\\S2\\C#\\Compte rendu\\TP3\\DashboardData\\DashboardData.csproj": {
+    "C:\\Users\\Abdou\\Desktop\\2eme cycle\\S2\\C#\\Compte rendu\\TP3\\TP3_dotnet\\DashboardData\\DashboardData.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Abdou\\Desktop\\2eme cycle\\S2\\C#\\Compte rendu\\TP3\\DashboardData\\DashboardData.csproj",
+        "projectUniqueName": "C:\\Users\\Abdou\\Desktop\\2eme cycle\\S2\\C#\\Compte rendu\\TP3\\TP3_dotnet\\DashboardData\\DashboardData.csproj",
         "projectName": "DashboardData",
-        "projectPath": "C:\\Users\\Abdou\\Desktop\\2eme cycle\\S2\\C#\\Compte rendu\\TP3\\DashboardData\\DashboardData.csproj",
+        "projectPath": "C:\\Users\\Abdou\\Desktop\\2eme cycle\\S2\\C#\\Compte rendu\\TP3\\TP3_dotnet\\DashboardData\\DashboardData.csproj",
         "packagesPath": "C:\\Users\\Abdou\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Abdou\\Desktop\\2eme cycle\\S2\\C#\\Compte rendu\\TP3\\DashboardData\\obj\\",
+        "outputPath": "C:\\Users\\Abdou\\Desktop\\2eme cycle\\S2\\C#\\Compte rendu\\TP3\\TP3_dotnet\\DashboardData\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Abdou\\AppData\\Roaming\\NuGet\\NuGet.Config"

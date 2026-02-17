@@ -1,5 +1,10 @@
 @page "/dashboard"
 @rendermode InteractiveServer
+@using DashboardData.Services
+@inject ISensorService SensorService
+@inject NavigationManager NavManager
+@inject UserCounterService CounterService
+
 
 <PageTitle> Mon Dashboard Title </PageTitle>
 
@@ -32,6 +37,14 @@ else
 
 @using DashboardData.Models
 
+@if (_isLoading)
+{
+    <p><em>Chargement des donnees...</em></p>
+}
+else
+{
+
+
 <table class="table table-striped">
     <thead>
         <tr>
@@ -40,7 +53,7 @@ else
         </tr>
     </thead>
     <tbody>
-        @foreach (var sensor in Sensors)
+        @foreach (var sensor in _sensors)
         {
             <tr>
                 <td>@sensor.Name</td>
@@ -53,18 +66,39 @@ else
 
 </table>
 
+<button class="btn btn-success mb-3" @onclick="GoToAddSensor">
+    Ajouter un capteur
+</button>
+
+
+<div class="card mt-4 p-3">
+    <h5>Compteur utilisateur</h5>
+
+    <p>
+        Nombre d'actions : 
+        <strong>@CounterService.Count</strong>
+    </p>
+
+    <button class="btn btn-success" @onclick="IncrementCounter">
+        Incrementer
+    </button>
+</div>
+
+
+}
 
 @code {
     private bool IsSystemOK= true;
     private int RequestCount = 0;
     private string LastLog = "Rien a signaler";
-    private List<SensorData> Sensors = new List<SensorData>
+    private List<SensorData> _sensors = new();
+    private bool _isLoading = true;
+    
+    protected override async Task OnInitializedAsync()
     {
-        new SensorData { Name= "Temp_Salon", Value=22.5},
-        new SensorData { Name= "Hum_Cuisine", Value=45.0},
-        new SensorData { Name= "CO2_Bureau", Value=800},
-
-    };
+        _sensors = await SensorService.GetSensorsAsync();
+        _isLoading = false;
+    }
 
     private void RefreshSystem()
     {
@@ -78,5 +112,16 @@ else
             LastLog = $"Check {RequestCount} : ANOMALIE DETECTEE !";
                    
     }
+
+    private void GoToAddSensor()
+    {
+        NavManager.NavigateTo("/add-sensor");
+    }
+
+    private void IncrementCounter()
+    {
+        CounterService.Increment();
+    }
+
 }
 
