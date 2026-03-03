@@ -32,9 +32,9 @@
 
     private SensorData newSensor = new();
 
-    private void SaveSensor()
+    private async Task SaveSensor()
     {
-        SensorService.AddSensor(newSensor);
+        await SensorService.AddSensorAsync(newSensor);
 
         // Retour au dashboard
         NavManager.NavigateTo("/dashboard");

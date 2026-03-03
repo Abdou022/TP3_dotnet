@@ -5,5 +5,9 @@ namespace DashboardData.Services;
 public interface ISensorService 
 {
     Task<List<SensorData>> GetSensorsAsync();
-    void AddSensor(SensorData sensor);
+    Task AddSensorAsync(SensorData sensor);
+    Task<List<SensorData>> GetCriticalSensorsAsync(double threshold);
+    Task<int> GetTotalCountAsync();
+    Task<double> GetAverageValueAsync();
+    Task<double> GetMaxValueAsync();
 }
